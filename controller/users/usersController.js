@@ -2,15 +2,18 @@ const User = require("../../model/User/User");
 const bcrypt = require("bcryptjs");
 const generateToken = require("../../utils/generateToken");
 const getTokenFromHeaders = require("../../utils/getTokenFromHeaders");
-
+const appError = require("../../utils/appError");
 const express = require("express");
-const userRegisterController = async (req, res) => {
+const { Error } = require("mongoose");
+
+//register user
+const userRegisterController = async (req, res, next) => {
   const { firstName, lastName, profilePhoto, email, password } = req.body;
   try {
     //check if the user is already registered
     const userFound = await User.findOne({ email });
     if (userFound) {
-      return res.json({ msg: "Email already registered" });
+      return next(appError("Email already registered", 500));
     }
     //hash user password
     const salt = await bcrypt.genSalt(10);
@@ -25,7 +28,7 @@ const userRegisterController = async (req, res) => {
     });
     res.json({ status: "success", msg: "User created", data: user });
   } catch (err) {
-    res.status(500).send(err.message);
+    next(appError(err.message));
   }
 };
 
@@ -67,11 +70,8 @@ const userLoginController = async (req, res) => {
 
 //user profile
 const userProfileController = async (req, res) => {
-  const { id } = req.params;
   try {
-    const token = getTokenFromHeaders(req);
-    // console.log(token);
-    const user = await User.findById(id);
+    const user = await User.findById(req.userAuth);
     res.json({
       status: "success",
       data: user,

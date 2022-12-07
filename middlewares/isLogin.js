@@ -1,13 +1,20 @@
 const express = require("express");
 const getTokenFromHeaders = require("../utils/getTokenFromHeaders");
-
+const verifyToken = require("../utils/verifyToken");
 const isLogin = (req, res, next) => {
   //get token from headers
   const token = getTokenFromHeaders(req);
-  if (!token) {
+
+  //verify token
+  const decodedUser = verifyToken(token);
+
+  //save user into a req object
+  req.userAuth = decodedUser.id;
+
+  if (!decodedUser) {
     return res.json({
       status: "failed",
-      message: "Token is not attached to the headers",
+      message: "invalid token",
     });
   } else {
     next();
