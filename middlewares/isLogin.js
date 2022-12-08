@@ -1,6 +1,8 @@
 const express = require("express");
+const { appError } = require("../utils/appError");
 const getTokenFromHeaders = require("../utils/getTokenFromHeaders");
 const verifyToken = require("../utils/verifyToken");
+
 const isLogin = (req, res, next) => {
   //get token from headers
   const token = getTokenFromHeaders(req);
@@ -12,10 +14,7 @@ const isLogin = (req, res, next) => {
   req.userAuth = decodedUser.id;
 
   if (!decodedUser) {
-    return res.json({
-      status: "failed",
-      message: "invalid token",
-    });
+    return next(appError("invalid token", 500));
   } else {
     next();
   }

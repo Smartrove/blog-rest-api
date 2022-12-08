@@ -2,7 +2,7 @@ const User = require("../../model/User/User");
 const bcrypt = require("bcryptjs");
 const generateToken = require("../../utils/generateToken");
 const getTokenFromHeaders = require("../../utils/getTokenFromHeaders");
-const appError = require("../../utils/appError");
+const { appError, AppError } = require("../../utils/appError");
 const express = require("express");
 const { Error } = require("mongoose");
 
@@ -13,7 +13,7 @@ const userRegisterController = async (req, res, next) => {
     //check if the user is already registered
     const userFound = await User.findOne({ email });
     if (userFound) {
-      return next(appError("Email already registered", 500));
+      return next(new AppError("Email already registered", 500));
     }
     //hash user password
     const salt = await bcrypt.genSalt(10);

@@ -11,8 +11,10 @@ const appError = (message, statusCode) => {
 //handle class error
 class AppError extends Error {
   constructor(message, statusCode) {
-    //
+    super(message);
+    this.statusCode = statusCode;
+    this.status = "failed";
   }
 }
 
-module.exports = appError;
+module.exports = { appError, AppError };
