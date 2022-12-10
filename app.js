@@ -18,5 +18,8 @@ app.use(morgan("tiny"));
 app.use(`${url}/user`, userRouter);
 
 app.use(errorHandler);
+app.use("*", (req, res) => {
+  res.status(404).json({ message: `${req.originalUrl}- is not found` });
+});
 
 app.listen(port, () => console.log(`server started at port ${port}`));

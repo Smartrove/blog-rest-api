@@ -81,8 +81,43 @@ const userProfileController = async (req, res) => {
   }
 };
 
+//profile photo upload
+const profilePhotoController = async (req, res, next) => {
+  try {
+    //find user for profile photo upload
+    const userToUpload = await User.findById(req.userAuth);
+    if (!userToUpload) {
+      return next(appError("user not found", 404));
+    }
+
+    //check if user is blocked
+    if (userToUpload.isBlocked) {
+      return next(appError("your account is blocked, action not allowed", 403));
+    }
+
+    //check if user is updating his dp
+    if (req.file) {
+      //update user dp
+      await User.findByIdAndUpdate(
+        req.userAuth,
+        {
+          $set: { profilePhoto: req.file.path },
+        },
+        { new: true }
+      );
+    }
+    res.json({
+      status: "success",
+      data: "You have successfully uploaded your profile photo",
+    });
+  } catch (err) {
+    next(appError(err.message, 500));
+  }
+};
+
 module.exports = {
   userRegisterController,
   userLoginController,
   userProfileController,
+  profilePhotoController,
 };
