@@ -5,10 +5,13 @@ const {
   userLoginController,
   userProfileController,
   profilePhotoController,
+  profileViewersController,
+  userFollowingController,
+  userUnfollowingController,
+  blockedUser,
 } = require("../../controller/users/usersController");
 const isLogin = require("../../middlewares/isLogin");
 const multer = require("multer");
-
 //instance of multer
 const upload = new multer({
   storage,
@@ -24,7 +27,11 @@ router.post("/login", userLoginController);
 
 //get user profile
 router.get("/profile", isLogin, userProfileController);
-profilePhotoController;
+router.get("/viewers/:id", isLogin, profileViewersController);
+router.get("/following/:id", isLogin, userFollowingController);
+router.get("/unfollowing/:id", isLogin, userUnfollowingController);
+router.get("/blocked/:id", isLogin, blockedUser);
+
 router.post(
   "/profile-upload",
   isLogin,
