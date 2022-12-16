@@ -13,7 +13,7 @@ const postSchema = new mongoose.Schema(
     category: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Category",
-      required: [true, "Category is required"],
+      // required: [true, "Category is required"],
     },
     numbViews: [
       {
@@ -40,7 +40,7 @@ const postSchema = new mongoose.Schema(
     },
     photo: {
       type: String,
-      required: [true, "Post Image is required"],
+      // required: [true, "Post Image is required"],
     },
   },
   { timestamps: true }

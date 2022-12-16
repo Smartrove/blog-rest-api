@@ -195,6 +195,85 @@ const blockedUser = async (req, res, next) => {
     res.json(err.message);
   }
 };
+//unblocked user contoller
+const unblockedUser = async (req, res, next) => {
+  try {
+    //find user to be blocked
+    const userToBeUnblocked = await User.findById(req.params.id);
+
+    //find the user who is blocking
+    const userUnblocking = await User.findById(req.userAuth);
+
+    if (userToBeUnblocked && userUnblocking) {
+      //check if user to be blocked already exists in the array
+      const userAlreadyUnblocked = userUnblocking.blocked.find(
+        (blocked) => blocked.toString() === userToBeUnblocked._id.toString()
+      );
+      if (!userAlreadyUnblocked) {
+        return next(appError("you cant unblock this user"));
+      } else {
+        //remove user to be unblocked id from the array
+        userUnblocking.blocked = userUnblocking.blocked.filter(
+          (blocked) => blocked.toString() === userToBeUnblocked._id.toString()
+        );
+
+        await userUnblocking.save();
+
+        res.json({
+          status: "success",
+          data: "You have successfully unblocked this user",
+        });
+      }
+    }
+  } catch (err) {
+    res.json(err.message);
+  }
+};
+//admin blocked user contoller
+const adminBlockedUser = async (req, res, next) => {
+  try {
+    //find user to be blocked
+    const userToBeBlocked = await User.findById(req.params.id);
+
+    if (!userToBeBlocked) {
+      return next(appError("you cant unblock this user"));
+    }
+
+    //change the isBlocked field to true
+    userToBeBlocked.isBlocked = true;
+    await userToBeBlocked.save();
+
+    res.json({
+      status: "success",
+      data: "You have successfully blocked this user",
+    });
+  } catch (err) {
+    res.json(err.message);
+  }
+};
+
+//admin unblocked user
+const adminUnblockedUser = async (req, res, next) => {
+  try {
+    //find user to be blocked
+    const userToBeUnblocked = await User.findById(req.params.id);
+
+    if (!userToBeUnblocked) {
+      return next(appError("you cant unblock this user"));
+    }
+
+    //change the isBlocked field to false
+    userToBeUnblocked.isBlocked = false;
+    await userToBeUnblocked.save();
+
+    res.json({
+      status: "success",
+      data: "You have successfully unblocked this user",
+    });
+  } catch (err) {
+    res.json(err.message);
+  }
+};
 
 //profile photo upload
 const profilePhotoController = async (req, res, next) => {
@@ -261,7 +340,24 @@ const profileViewersController = async (req, res, next) => {
   }
 };
 
+//get all user route
+const usersController = async (req, res, next) => {
+  try {
+    const user = await User.find();
+    res.json({
+      status: "success",
+      data: user,
+    });
+  } catch (err) {
+    res.json(err.message);
+  }
+};
+
 module.exports = {
+  usersController,
+  adminUnblockedUser,
+  adminBlockedUser,
+  unblockedUser,
   userRegisterController,
   userLoginController,
   userProfileController,
