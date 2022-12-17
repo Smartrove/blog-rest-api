@@ -28,6 +28,10 @@ const userSchema = new mongoose.Schema(
 //Hooks
 //pre(before record is saved) here we use (find or findOne)
 userSchema.pre("findOne", async function (next) {
+  //populate posts using schema pre hook
+  this.populate({
+    path: "posts",
+  });
   //getting user id
   const userId = this._conditions._id;
 
@@ -38,14 +42,98 @@ userSchema.pre("findOne", async function (next) {
   const lastPost = posts[posts.length - 1];
 
   //get last post date
-  const lastPostDate = new Date(lastPost.createdAt);
+  // const lastPostDate = new Date(lastPost && lastPost.createdAt);
+  //using optional chaining
+  const lastPostDate = new Date(lastPost?.createdAt);
   //get last post date in string format
   const lastPostInString = lastPostDate.toDateString();
 
-  //add lastpost date as virtuals to users
+  //add lastpost date as virtual to users
   userSchema.virtual("lastPostDate").get(function () {
     return lastPostInString;
   });
+
+  //get if user is active for 30days
+  const currentDate = new Date();
+
+  // the diff btw currentDate and last post date
+  const diff = currentDate - lastPostDate;
+
+  //get timestamps diff in days
+  const diffInDays = diff / (1000 * 3600 * 24);
+
+  if (diffInDays < 30) {
+    //add virtual properties to the profile
+    userSchema.virtual("isInActive").get(function () {
+      return true;
+    });
+
+    //find user by ID and update
+    await User.findByIdAndUpdate(userId, { isBlocked: true }, { new: true });
+  } else {
+    userSchema.virtual("isInActive").get(function () {
+      return false;
+    });
+    //find user by ID and update
+    await User.findByIdAndUpdate(userId, { isBlocked: false }, { new: true });
+  }
+
+  //convert diffInDays to daysAgo
+  const daysAgo = Math.floor(diffInDays);
+  console.log(daysAgo);
+
+  //convert diffInDays to daysAgo
+
+  //add last active date virtual to user profile
+  userSchema.virtual("lastActiveDate").get(function () {
+    //check if daysAgo is less than zero
+    const daysAgo = Math.floor(diffInDays);
+
+    if (daysAgo <= 0) {
+      return "Today";
+    }
+    //check if daysAgo is equal to 1
+    if (daysAgo === 1) {
+      return "Yesterday";
+    }
+
+    //if daysAgo is greater than 1
+    if (daysAgo > 1) {
+      return `${daysAgo} days ago`;
+    }
+  });
+
+  //update user award base on the number of posts
+  const numOfPosts = posts.length;
+
+  //check if users posts is less than 10
+  if (numOfPosts < 10) {
+    await User.findByIdAndUpdate(
+      userId,
+      {
+        userAward: "Bronze",
+      },
+      { new: true }
+    );
+  }
+  if (numOfPosts > 10) {
+    await User.findByIdAndUpdate(
+      userId,
+      {
+        userAward: "Silver",
+      },
+      { new: true }
+    );
+  }
+  if (numOfPosts > 20) {
+    await User.findByIdAndUpdate(
+      userId,
+      {
+        userAward: "Gold",
+      },
+      { new: true }
+    );
+  }
   next();
 });
 //post(after record is saved)here we use (create, save)

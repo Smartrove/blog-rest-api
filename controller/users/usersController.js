@@ -153,6 +153,8 @@ const userUnfollowingController = async (req, res, next) => {
 //user profile
 const userProfileController = async (req, res) => {
   try {
+    //we can populate the posts field here or inside the schema pre hook function...
+    // const user = await User.findById(req.userAuth).populate("posts");
     const user = await User.findById(req.userAuth);
     res.json({
       status: "success",
@@ -163,7 +165,36 @@ const userProfileController = async (req, res) => {
   }
 };
 
-//blocked user contoller
+//update user profile
+const updateUserProfileController = async (req, res, next) => {
+  try {
+    //update user email
+    const { email, firstName, lastName, description } = req.body;
+
+    //check if email has been taken already
+    if (email) {
+      const emailTaken = await User.findOne({ email });
+      if (emailTaken) {
+        return next(appError("Email is already taken", 400));
+      }
+    }
+
+    //update user email
+    const user = await User.findByIdAndUpdate(
+      req.userAuth,
+      { email, firstName, lastName, description },
+      { new: true, runValidators: true }
+    );
+    res.json({
+      status: "success",
+      data: user,
+    });
+  } catch (err) {
+    res.json(err.message);
+  }
+};
+
+//blocked user controller
 const blockedUser = async (req, res, next) => {
   try {
     //find user to be blocked
@@ -354,6 +385,7 @@ const usersController = async (req, res, next) => {
 };
 
 module.exports = {
+  updateUserProfileController,
   usersController,
   adminUnblockedUser,
   adminBlockedUser,
