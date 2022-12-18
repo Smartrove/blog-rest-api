@@ -6,7 +6,9 @@ const { appError, AppError } = require("../../utils/appError");
 const express = require("express");
 const { Error } = require("mongoose");
 const { response } = require("express");
-
+const Post = require("../../model/Post/Post");
+const Category = require("../../model/Category/Category");
+const Comment = require("../../model/Comment/Comment");
 //register user
 const userRegisterController = async (req, res, next) => {
   const { firstName, lastName, profilePhoto, email, password } = req.body;
@@ -193,6 +195,60 @@ const updateUserProfileController = async (req, res, next) => {
     res.json(err.message);
   }
 };
+//update user password
+const updateUserPasswordController = async (req, res, next) => {
+  try {
+    //update user email
+    const { password } = req.body;
+
+    //check if email has been taken already
+    if (password) {
+      const salt = await bcrypt.genSalt(10);
+      const hashPassword = await bcrypt.hash(password, salt);
+
+      //update
+      await User.findByIdAndUpdate(
+        req.userAuth,
+        { password: hashPassword },
+        { new: true, runValidators: true }
+      );
+
+      res.json({
+        status: "success",
+        data: "password updated successfully",
+      });
+    } else {
+      return next(appError("password update failed"));
+    }
+  } catch (err) {
+    res.json(err.message);
+  }
+};
+//delete user account
+const deleteAccountController = async (req, res, next) => {
+  try {
+    //find user account to be deleted
+    const user = await User.findById(req.userAuth);
+
+    //find all posts to be deleted
+    const posts = await Post.deleteMany({ user: req.userAuth });
+
+    //find and delete all comments
+    const comments = await Comment.deleteMany({ user: req.userAuth });
+
+    //delete all categories
+    const categories = await Category.deleteMany({ user: req.userAuth });
+
+    //delete the user
+    await user.delete();
+    res.json({
+      status: "success",
+      data: "Account deleted successfully",
+    });
+  } catch (err) {
+    res.json(err.message);
+  }
+};
 
 //blocked user controller
 const blockedUser = async (req, res, next) => {
@@ -226,7 +282,7 @@ const blockedUser = async (req, res, next) => {
     res.json(err.message);
   }
 };
-//unblocked user contoller
+//unblocked user controller
 const unblockedUser = async (req, res, next) => {
   try {
     //find user to be blocked
@@ -260,7 +316,7 @@ const unblockedUser = async (req, res, next) => {
     res.json(err.message);
   }
 };
-//admin blocked user contoller
+//admin blocked user controller
 const adminBlockedUser = async (req, res, next) => {
   try {
     //find user to be blocked
@@ -385,6 +441,8 @@ const usersController = async (req, res, next) => {
 };
 
 module.exports = {
+  deleteAccountController,
+  updateUserPasswordController,
   updateUserProfileController,
   usersController,
   adminUnblockedUser,

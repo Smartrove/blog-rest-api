@@ -1,6 +1,8 @@
 const express = require("express");
 const storage = require("../../config/cloudinary");
 const {
+  deleteAccountController,
+  updateUserPasswordController,
   updateUserProfileController,
   userRegisterController,
   userLoginController,
@@ -33,7 +35,9 @@ router.post("/login", userLoginController);
 
 //get user profile
 router.get("/profile", isLogin, userProfileController);
+router.delete("/deleteAccount", isLogin, deleteAccountController);
 router.put("/update-profile", isLogin, updateUserProfileController);
+router.put("/update-password", isLogin, updateUserPasswordController);
 router.get("/all-users", usersController);
 router.get("/viewers/:id", isLogin, profileViewersController);
 router.get("/following/:id", isLogin, userFollowingController);
