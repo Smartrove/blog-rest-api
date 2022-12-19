@@ -11,7 +11,7 @@ const Category = require("../../model/Category/Category");
 const Comment = require("../../model/Comment/Comment");
 //register user
 const userRegisterController = async (req, res, next) => {
-  const { firstName, lastName, profilePhoto, email, password } = req.body;
+  const { firstName, lastName, email, password } = req.body;
   try {
     //check if the user is already registered
     const userFound = await User.findOne({ email });
@@ -36,14 +36,14 @@ const userRegisterController = async (req, res, next) => {
 };
 
 //login user
-const userLoginController = async (req, res) => {
+const userLoginController = async (req, res, next) => {
   const { email, password } = req.body;
   try {
     //check if email exist
     const userFound = await User.findOne({ email });
 
     if (!userFound) {
-      return res.json({ msg: "invalid login credentials" });
+      return next(appError("invalid credentials"));
     }
 
     //verify password
@@ -54,7 +54,7 @@ const userLoginController = async (req, res) => {
     );
 
     if (!isPasswordMatched) {
-      return res.json({ msg: "invalid login credentials" });
+      return next(appError("invalid credentials"));
     }
     res.json({
       status: "success",
@@ -68,7 +68,7 @@ const userLoginController = async (req, res) => {
       },
     });
   } catch (err) {
-    res.json(err.message);
+    next(appError(err.message));
   }
 };
 
@@ -106,7 +106,7 @@ const userFollowingController = async (req, res, next) => {
       }
     }
   } catch (err) {
-    res.json(err.message);
+    next(appError(err.message));
   }
 };
 //unfollowing user
@@ -148,7 +148,7 @@ const userUnfollowingController = async (req, res, next) => {
       }
     }
   } catch (err) {
-    res.json(err.message);
+    next(appError(err.message));
   }
 };
 
@@ -163,7 +163,7 @@ const userProfileController = async (req, res) => {
       data: user,
     });
   } catch (err) {
-    res.json(err.message);
+    next(appError(err.message));
   }
 };
 
@@ -192,7 +192,7 @@ const updateUserProfileController = async (req, res, next) => {
       data: user,
     });
   } catch (err) {
-    res.json(err.message);
+    next(appError(err.message));
   }
 };
 //update user password
@@ -221,7 +221,7 @@ const updateUserPasswordController = async (req, res, next) => {
       return next(appError("password update failed"));
     }
   } catch (err) {
-    res.json(err.message);
+    next(appError(err.message));
   }
 };
 //delete user account
@@ -246,7 +246,7 @@ const deleteAccountController = async (req, res, next) => {
       data: "Account deleted successfully",
     });
   } catch (err) {
-    res.json(err.message);
+    next(appError(err.message));
   }
 };
 
@@ -279,7 +279,7 @@ const blockedUser = async (req, res, next) => {
       }
     }
   } catch (err) {
-    res.json(err.message);
+    next(appError(err.message));
   }
 };
 //unblocked user controller
@@ -313,7 +313,7 @@ const unblockedUser = async (req, res, next) => {
       }
     }
   } catch (err) {
-    res.json(err.message);
+    next(appError(err.message));
   }
 };
 //admin blocked user controller
@@ -335,7 +335,7 @@ const adminBlockedUser = async (req, res, next) => {
       data: "You have successfully blocked this user",
     });
   } catch (err) {
-    res.json(err.message);
+    next(appError(err.message));
   }
 };
 
@@ -358,7 +358,7 @@ const adminUnblockedUser = async (req, res, next) => {
       data: "You have successfully unblocked this user",
     });
   } catch (err) {
-    res.json(err.message);
+    next(appError(err.message));
   }
 };
 
@@ -436,7 +436,7 @@ const usersController = async (req, res, next) => {
       data: user,
     });
   } catch (err) {
-    res.json(err.message);
+    next(appError(err.message));
   }
 };
 

@@ -9,7 +9,7 @@ const port = process.env.PORT || 6000;
 const userRouter = require("./routes/users/users");
 const postRouter = require("./routes/posts/posts");
 const commentRouter = require("./routes/comments/comments");
-const categoriesRouter = require("./routes/categories/categories");
+const categoryRouter = require("./routes/categories/categories");
 const errorHandler = require("./middlewares/globalErrorHandler");
 const isAdmin = require("./middlewares/isAdmin");
 const app = express();
@@ -17,6 +17,8 @@ app.use(express.json());
 app.use(morgan("tiny"));
 app.use(`${url}/user`, userRouter);
 app.use(`${url}/post`, postRouter);
+app.use(`${url}/category`, categoryRouter);
+app.use(`${url}/comment`, commentRouter);
 
 app.use(errorHandler);
 app.use("*", (req, res) => {
