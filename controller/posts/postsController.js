@@ -45,18 +45,126 @@ const viewAllPostsController = async (req, res, next) => {
     const filteredPosts = allPosts.filter((post) => {
       //get all blocked users
       const blockedUsers = post.user.blocked;
-
+      // console.log(blockedUsers);
       //whether the blocked id is included
       const isBlocked = blockedUsers.includes(req.userAuth);
-      console.log(isBlocked);
+
+      // return isBlocked ? null : post;
+      return !isBlocked;
     });
     res.json({
       status: "success",
-      data: allPosts,
+      data: filteredPosts,
     });
   } catch (err) {
     return next(err.message);
   }
 };
 
-module.exports = { createPostController, viewAllPostsController };
+//like a post
+const likePostController = async (req, res, next) => {
+  try {
+    //find post to be liked
+    const post = await Post.findById(req.params.id);
+    //check if the post has been liked already
+    const postAlreadyLiked = post.likes.includes(req.userAuth);
+    //if user already liked the post, unlike it
+    if (postAlreadyLiked) {
+      post.likes = post.likes.filter((like) => like != req.userAuth);
+      await post.save();
+    } else {
+      //if the user has not liked the post, then like it
+      post.likes.push(req.userAuth);
+      await post.save();
+    }
+
+    res.json({
+      status: "success",
+      data: post,
+    });
+  } catch (err) {
+    next(appError(err.message));
+  }
+};
+
+//dislike a post
+const disLikePostController = async (req, res, next) => {
+  try {
+    //find post to be liked
+    const post = await Post.findById(req.params.id);
+    //check if the post has been liked already
+    const postAlreadyDisliked = post.disLikes.includes(req.userAuth);
+    //if user already liked the post, unlike it
+    if (postAlreadyDisliked) {
+      post.disLikes = post.disLikes.filter(
+        (dislike) => dislike != req.userAuth
+      );
+      await post.save();
+    } else {
+      //if the user has not liked the post, then like it
+      post.disLikes.push(req.userAuth);
+      await post.save();
+    }
+
+    res.json({
+      status: "success",
+      data: post,
+    });
+  } catch (err) {
+    next(appError(err.message));
+  }
+};
+
+//number of view counts
+const postViewCountController = async (req, res, next) => {
+  try {
+    //find post to be liked
+    const post = await Post.findById(req.params.id);
+    //number of views
+    //check if user has viewed post
+    const isViewed = post.numbViews.includes(req.userAuth);
+    if (isViewed) {
+      res.json({
+        status: "success",
+        data: post,
+      });
+    } else {
+      res.json({
+        status: "success",
+        data: post,
+      });
+      //push the user id into the number of view arrays
+      post.numbViews.push(req.userAuth);
+      await post.save();
+    }
+  } catch (err) {
+    next(appError(err.message));
+  }
+};
+//delete post
+const deletePostController = async (req, res, next) => {
+  try {
+    //check if post belongs to the current user
+    //find post to be liked
+    const post = await Post.findById(req.params.id);
+    if (post.user.toString() !== req.userAuth.toString()) {
+      return next(appError("You cant delete this post"));
+    }
+    await Post.findByIdAndDelete(req.params.id);
+    res.json({
+      status: "success",
+      data: "Post deleted successfully",
+    });
+  } catch (err) {
+    next(appError(err.message));
+  }
+};
+
+module.exports = {
+  createPostController,
+  viewAllPostsController,
+  likePostController,
+  disLikePostController,
+  postViewCountController,
+  deletePostController,
+};
