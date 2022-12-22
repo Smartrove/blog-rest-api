@@ -16,6 +16,7 @@ const userSchema = new mongoose.Schema(
     followers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     following: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     posts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Post" }],
+    comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
     blocked: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     // plan: { type: String, enum: ["Free", "Premium", "Pro"], default: "Free" },
     userAward: [
@@ -62,7 +63,7 @@ userSchema.pre("findOne", async function (next) {
   //get timestamps diff in days
   const diffInDays = diff / (1000 * 3600 * 24);
 
-  if (diffInDays < 30) {
+  if (diffInDays > 30) {
     //add virtual properties to the profile
     userSchema.virtual("isInActive").get(function () {
       return true;

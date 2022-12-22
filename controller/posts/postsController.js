@@ -44,6 +44,7 @@ const viewAllPostsController = async (req, res, next) => {
     //check if the post author have blocked user
     const filteredPosts = allPosts.filter((post) => {
       //get all blocked users
+      // console.log(post);
       const blockedUsers = post.user.blocked;
       // console.log(blockedUsers);
       //whether the blocked id is included
@@ -144,16 +145,43 @@ const postViewCountController = async (req, res, next) => {
 //delete post
 const deletePostController = async (req, res, next) => {
   try {
-    //check if post belongs to the current user
     //find post to be liked
     const post = await Post.findById(req.params.id);
-    if (post.user.toString() !== req.userAuth.toString()) {
+    //check if post belongs to the current user
+    if (req.userAuth.toString() !== post.user.toString()) {
       return next(appError("You cant delete this post"));
     }
     await Post.findByIdAndDelete(req.params.id);
     res.json({
       status: "success",
       data: "Post deleted successfully",
+    });
+  } catch (err) {
+    next(appError(err.message));
+  }
+};
+//update post
+const updatePostController = async (req, res, next) => {
+  const { title, description, category } = req.body;
+  try {
+    //find post to be liked
+    const post = await Post.findById(req.params.id);
+    //check if post belongs to the current user
+    if (post.user.toString() !== req.userAuth.toString()) {
+      return next(appError("You cant update this post"));
+    }
+    await Post.findByIdAndUpdate(
+      req.params.id,
+      {
+        title,
+        description,
+        photo: req?.file?.path,
+      },
+      { new: true }
+    );
+    res.json({
+      status: "success",
+      data: "Post updated successfully",
     });
   } catch (err) {
     next(appError(err.message));
@@ -167,4 +195,5 @@ module.exports = {
   disLikePostController,
   postViewCountController,
   deletePostController,
+  updatePostController,
 };
