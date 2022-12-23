@@ -47,4 +47,18 @@ __Server:__ Node, Express, MongoDB, Mongoose, JWT
   - [Upload a profile photo](https://www.github.com/octokatherine)
 
 
+# API Authentication
+Some endpoints would require authentication to perform some actions. Example of that is when you need to create/update/delete post, you will need your access token to do that.
+The endpoint that requires authentication requires a bearer token to be sent to the `Authorization Header`.
+__Example__: 
+`Authorization: Bearer Your Token`.
+
+## Register an API Client
+```http
+POST /api/blog/v1/user/register
+```
+
+The request body needs to be a JSON Format
+
+
 
