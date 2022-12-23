@@ -29,5 +29,22 @@ __Server:__ Node, Express, MongoDB, Mongoose, JWT
 
 - [API AUTHENTICATION](https://www.github.com/octokatherine)
   - [Register a new API Client](https://www.github.com/octokatherine)
+  - [Login](https://www.github.com/octokatherine)
+
+- [Users](https://www.github.com/octokatherine)
+  - [Get my profile](https://www.github.com/octokatherine)
+  - [Get all users](https://www.github.com/octokatherine)
+  - [View a user profile count](https://www.github.com/octokatherine)
+  - [Following a user](https://www.github.com/octokatherine)
+  - [#Unfollowing a user](https://www.github.com/octokatherine)
+  - [Update a user password](https://www.github.com/octokatherine)
+  - [Update your profile](https://www.github.com/octokatherine)
+  - [Block another user](https://www.github.com/octokatherine)
+  - [Unblock another user](https://www.github.com/octokatherine)
+  - [Admin blocking a user](https://www.github.com/octokatherine)
+  - [Update a user password](https://www.github.com/octokatherine)
+  - [Delete your account](https://www.github.com/octokatherine)
+  - [Upload a profile photo](https://www.github.com/octokatherine)
+
 
 
