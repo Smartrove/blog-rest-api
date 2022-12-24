@@ -110,7 +110,7 @@ POST /api/blog/v1/user/update-profile
 ## Update Your Password
 
 ```http
-POST /api/blog/v1/user/profile
+POST /api/blog/v1/user/update-password
 ```
 |Parameter |Type |Description |Required|
 |:---------|:----|:-----------|:-------|
@@ -163,6 +163,56 @@ POST /api/blog/v1/user/blocked/:id
 |:---------|:----|:-----------|:-------|
 | `authentication`   |`string`| Your Token | Yes|
 | `email`   |`string`| Your email | Yes|
-|`password` | `string` | Your password | Yes
+|`password` | `string` | Your password | Yes|
+
+
+## Unblock User
+
+```http
+POST /api/blog/v1/user/unblocked/:id
+```
+|Parameter |Type |Description |Required|
+|:---------|:----|:-----------|:-------|
+| `authentication`   |`string`| Your Token | Yes|
+| `email`   |`string`| Your email | Yes|
+|`password` | `string` | Your password | Yes|
+
+
+## Admin block User
+
+```http
+POST /api/blog/v1/user/blockedByAdmin/:id
+```
+|Parameter |Type |Description |Required|
+|:---------|:----|:-----------|:-------|
+| `authentication`   |`string`| Your Token | Yes|
+| `email`   |`string`| Your email | Yes|
+|`password` | `string` | Your password | Yes|
+
+
+## Admin unblock a blocked User
+
+```http
+POST /api/blog/v1/user/admin-unblock/:id
+```
+|Parameter |Type |Description |Required|
+|:---------|:----|:-----------|:-------|
+| `authentication`   |`string`| Your Token | Yes|
+| `email`   |`string`| Your email | Yes|
+|`password` | `string` | Your password | Yes|
+
+
+## Upload Profile Photo
+
+```http
+POST /api/blog/v1/user/profile-upload
+```
+|Parameter |Type |Description |Required|
+|:---------|:----|:-----------|:-------|
+| `authentication`   |`string`| Your Token | Yes|
+| `email`   |`string`| Your email | Yes|
+|`password` | `string` | Your password | Yes|
+
+
 
 
