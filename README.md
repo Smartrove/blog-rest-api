@@ -68,6 +68,7 @@ POST /api/blog/v1/user/login
 ```
 |Parameter |Type |Description |Required|
 |:---------|:----|:-----------|:-------|
+| `auth`   |`string`| token |
 
 
 
