@@ -74,7 +74,7 @@ POST /api/blog/v1/user/login
 ## View User Profile
 
 ```http
-POST /api/blog/v1/user/profile
+GET /api/blog/v1/user/profile
 ```
 |Parameter |Type |Description |Required|
 |:---------|:----|:-----------|:-------|
@@ -86,7 +86,7 @@ POST /api/blog/v1/user/profile
 ## Delete Your Account
 
 ```http
-POST /api/blog/v1/user/deleteAccount
+DELETE /api/blog/v1/user/deleteAccount
 ```
 |Parameter |Type |Description |Required|
 |:---------|:----|:-----------|:-------|
@@ -98,7 +98,7 @@ POST /api/blog/v1/user/deleteAccount
 ## Update Your Profile
 
 ```http
-POST /api/blog/v1/user/update-profile
+PUT /api/blog/v1/user/update-profile
 ```
 |Parameter |Type |Description |Required|
 |:---------|:----|:-----------|:-------|
@@ -110,7 +110,7 @@ POST /api/blog/v1/user/update-profile
 ## Update Your Password
 
 ```http
-POST /api/blog/v1/user/update-password
+PUT /api/blog/v1/user/update-password
 ```
 |Parameter |Type |Description |Required|
 |:---------|:----|:-----------|:-------|
@@ -121,7 +121,7 @@ POST /api/blog/v1/user/update-password
 ## View all Users Profile
 
 ```http
-POST /api/blog/v1/user/all-users
+GET /api/blog/v1/user/all-users
 ```
 |Parameter |Type |Description |Required|
 |:---------|:----|:-----------|:-------|
@@ -133,55 +133,52 @@ POST /api/blog/v1/user/all-users
 ## Follow User
 
 ```http
-POST /api/blog/v1/user/following/:id
+GET /api/blog/v1/user/following/:id
 ```
 |Parameter |Type |Description |Required|
 |:---------|:----|:-----------|:-------|
 | `authentication`   |`string`| Your Token | Yes|
-| `email`   |`string`| Your email | Yes|
-|`password` | `string` | Your password | Yes|
+| `id`   |`string`| user id | Yes|
+
 
 
 ## Unfollow User
 
 ```http
-POST /api/blog/v1/user/unfollowing/:id
+GET /api/blog/v1/user/unfollowing/:id
 ```
 |Parameter |Type |Description |Required|
 |:---------|:----|:-----------|:-------|
 | `authentication`   |`string`| Your Token | Yes|
-| `email`   |`string`| Your email | Yes|
-|`password` | `string` | Your password | Yes
+| `id`   |`string`| user id | Yes|
 
 
 ## Block User
 
 ```http
-POST /api/blog/v1/user/blocked/:id
+GET /api/blog/v1/user/blocked/:id
 ```
 |Parameter |Type |Description |Required|
 |:---------|:----|:-----------|:-------|
 | `authentication`   |`string`| Your Token | Yes|
-| `email`   |`string`| Your email | Yes|
-|`password` | `string` | Your password | Yes|
+| `id`   |`string`| user id | Yes|
 
 
 ## Unblock User
 
 ```http
-POST /api/blog/v1/user/unblocked/:id
+GET /api/blog/v1/user/unblocked/:id
 ```
 |Parameter |Type |Description |Required|
 |:---------|:----|:-----------|:-------|
 | `authentication`   |`string`| Your Token | Yes|
-| `email`   |`string`| Your email | Yes|
-|`password` | `string` | Your password | Yes|
+| `id`   |`string`| user id | Yes|
 
 
 ## Admin block User
 
 ```http
-POST /api/blog/v1/user/blockedByAdmin/:id
+PUT /api/blog/v1/user/blockedByAdmin/:id
 ```
 |Parameter |Type |Description |Required|
 |:---------|:----|:-----------|:-------|
@@ -193,13 +190,12 @@ POST /api/blog/v1/user/blockedByAdmin/:id
 ## Admin unblock a blocked User
 
 ```http
-POST /api/blog/v1/user/admin-unblock/:id
+PUT /api/blog/v1/user/admin-unblock/:id
 ```
 |Parameter |Type |Description |Required|
 |:---------|:----|:-----------|:-------|
 | `authentication`   |`string`| Your Token | Yes|
-| `email`   |`string`| Your email | Yes|
-|`password` | `string` | Your password | Yes|
+| `id`   |`string`| user id | Yes|
 
 
 ## Upload Profile Photo
@@ -212,6 +208,73 @@ POST /api/blog/v1/user/profile-upload
 | `authentication`   |`string`| Your Token | Yes|
 | `email`   |`string`| Your email | Yes|
 |`password` | `string` | Your password | Yes|
+
+
+# API Reference
+## Create Post
+
+```http
+POST /api/blog/v1/post/
+```
+|Parameter |Type |Description |Required|
+|:---------|:----|:-----------|:-------|
+| `authentication`   |`string`| Your Token | Yes|
+| `title`   |`string`| Your email | Yes|
+|`description` | `string` | Your password | Yes|
+
+
+## View All Posts
+
+```http
+POST /api/blog/v1/post/
+```
+|Parameter |Type |Description |Required|
+|:---------|:----|:-----------|:-------|
+| `authentication`   |`string`| Your Token | Yes|
+| `title`   |`string`| Your email | no|
+|`description` | `string` | Your password | no|
+
+## Like a Post
+
+```http
+GET /api/blog/v1/post/likes/:id
+```
+|Parameter |Type |Description |Required|
+|:---------|:----|:-----------|:-------|
+| `authentication`   |`string`| Your Token | Yes|
+| `id`   |`string`| User id | Yes|
+
+
+## Dislike a Post
+
+```http
+GET /api/blog/v1/post/dislikes/:id
+```
+|Parameter |Type |Description |Required|
+|:---------|:----|:-----------|:-------|
+| `authentication`   |`string`| Your Token | Yes|
+| `id`   |`string`| User id | Yes|
+
+
+## View a Post
+
+```http
+GET /api/blog/v1/post/dislikes/:id
+```
+|Parameter |Type |Description |Required|
+|:---------|:----|:-----------|:-------|
+| `authentication`   |`string`| Your Token | Yes|
+| `id`   |`string`| Post id | Yes|
+
+## Update Post
+
+```http
+GET /api/blog/v1/post/update/:id
+```
+|Parameter |Type |Description |Required|
+|:---------|:----|:-----------|:-------|
+| `authentication`   |`string`| Your Token | Yes|
+| `id`   |`string`| User id | Yes|
 
 
 
