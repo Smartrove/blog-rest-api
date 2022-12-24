@@ -60,5 +60,14 @@ POST /api/blog/v1/user/register
 
 The request body needs to be a JSON Format
 
+# API Reference
+## User Login
+
+```http
+POST /api/blog/v1/user/login
+```
+|Parameter |Type |Description |Required|
+|:---------|:----|:-----------|:-------|
+
 
 
