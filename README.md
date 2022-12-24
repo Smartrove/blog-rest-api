@@ -68,8 +68,101 @@ POST /api/blog/v1/user/login
 ```
 |Parameter |Type |Description |Required|
 |:---------|:----|:-----------|:-------|
-| `email`   |`string`| none | Yes|
-|`password` | `string` | none | Yes|
+| `email`   |`string`| Your email | Yes|
+|`password` | `string` | Your password | Yes|
 
+## View User Profile
+
+```http
+POST /api/blog/v1/user/profile
+```
+|Parameter |Type |Description |Required|
+|:---------|:----|:-----------|:-------|
+| `authentication`   |`string`| Your Token | Yes|
+| `email`   |`string`| Your email | No|
+|`password` | `string` | Your password | No |
+
+
+## Delete Your Account
+
+```http
+POST /api/blog/v1/user/deleteAccount
+```
+|Parameter |Type |Description |Required|
+|:---------|:----|:-----------|:-------|
+| `authentication`   |`string`| Your Token | Yes|
+| `email`   |`string`| Your email | No|
+|`password` | `string` | Your password | No|
+
+
+## Update Your Profile
+
+```http
+POST /api/blog/v1/user/update-profile
+```
+|Parameter |Type |Description |Required|
+|:---------|:----|:-----------|:-------|
+| `authentication`   |`string`| Your Token | Yes|
+| `title`   |`string`| Your email | Yes|
+|`description` | `string` | Your password | Yes|
+
+
+## Update Your Password
+
+```http
+POST /api/blog/v1/user/profile
+```
+|Parameter |Type |Description |Required|
+|:---------|:----|:-----------|:-------|
+| `authentication`   |`string`| Your Token | Yes|
+|`password` | `string` | Your password | Yes|
+
+
+## View all Users Profile
+
+```http
+POST /api/blog/v1/user/all-users
+```
+|Parameter |Type |Description |Required|
+|:---------|:----|:-----------|:-------|
+| `authentication`   |`string`| Your Token | no|
+| `email`   |`string`| Your email | no|
+|`password` | `string` | Your password | no|
+
+
+## Follow User
+
+```http
+POST /api/blog/v1/user/following/:id
+```
+|Parameter |Type |Description |Required|
+|:---------|:----|:-----------|:-------|
+| `authentication`   |`string`| Your Token | Yes|
+| `email`   |`string`| Your email | Yes|
+|`password` | `string` | Your password | Yes|
+
+
+## Unfollow User
+
+```http
+POST /api/blog/v1/user/unfollowing/:id
+```
+|Parameter |Type |Description |Required|
+|:---------|:----|:-----------|:-------|
+| `authentication`   |`string`| Your Token | Yes|
+| `email`   |`string`| Your email | Yes|
+|`password` | `string` | Your password | Yes
+
+
+## Block User
+
+```http
+POST /api/blog/v1/user/blocked/:id
+```
+|Parameter |Type |Description |Required|
+|:---------|:----|:-----------|:-------|
+| `authentication`   |`string`| Your Token | Yes|
+| `email`   |`string`| Your email | Yes|
+|`password` | `string` | Your password | Yes
 
 
