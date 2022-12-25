@@ -46,7 +46,7 @@ __Server:__ Node, Express, MongoDB, Mongoose, JWT
   - [Delete your account](https://www.github.com/octokatherine)
   - [Upload a profile photo](https://www.github.com/octokatherine)
   
- -[Posts](#Post)
+ - [Posts](#Post)
   - [Create Post](https://www.github.com/octokatherine)
   - [Get all Posts](https://www.github.com/octokatherine)
   - [Like Post](https://www.github.com/octokatherine)
@@ -55,7 +55,7 @@ __Server:__ Node, Express, MongoDB, Mongoose, JWT
   - [Update Post](https://www.github.com/octokatherine)
   - [Delete Post](https://www.github.com/octokatherine)
  
- -[Comments](#Comment)
+ - [Comments](#Comment)
   - [Create Comment](https://www.github.com/octokatherine)
   - [Get all Comments](https://www.github.com/octokatherine)
   - [Update Comment](https://www.github.com/octokatherine)
