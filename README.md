@@ -282,7 +282,40 @@ GET /api/blog/v1/post/update/:id
 ## Delete a Post
 
 ```http
-GET /api/blog/v1/post/update/:id
+DELETE /api/blog/v1/post/delete/:id
+```
+|Parameter |Type |Description |Required|
+|:---------|:----|:-----------|:-------|
+| `authentication`   |`string`| Your Token | Yes|
+| `id`   |`string`| Post id | Yes|
+
+# Comment
+
+## Create a comment
+
+```http
+POST /api/blog/v1/comment/:id
+```
+|Parameter |Type |Description |Required|
+|:---------|:----|:-----------|:-------|
+| `authentication`   |`string`| Your Token | Yes|
+| `id`   |`string`| Post id | Yes|
+
+
+## Update comment
+
+```http
+PUT /api/blog/v1/comment/:id
+```
+|Parameter |Type |Description |Required|
+|:---------|:----|:-----------|:-------|
+| `authentication`   |`string`| Your Token | Yes|
+| `id`   |`string`| Post id | Yes|
+
+## Delete comment
+
+```http
+DELETE /api/blog/v1/comment/:id
 ```
 |Parameter |Type |Description |Required|
 |:---------|:----|:-----------|:-------|
