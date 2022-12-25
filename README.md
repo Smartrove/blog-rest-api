@@ -29,7 +29,7 @@ __Server:__ Node, Express, MongoDB, Mongoose, JWT
 
 - [API AUTHENTICATION](#API-Authentication)
   - [Register a new API Client](##Register-a-new-API-Client)
-  - [Login](##Login)
+  - [Login](#API-Reference)
 
 - [Users](https://www.github.com/octokatherine)
   - [Get my profile](https://www.github.com/octokatherine)
