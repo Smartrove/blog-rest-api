@@ -54,7 +54,11 @@ __Server:__ Node, Express, MongoDB, Mongoose, JWT
   - [Get viewers of post](https://www.github.com/octokatherine)
   - [Update Post](https://www.github.com/octokatherine)
   - [Delete Post](https://www.github.com/octokatherine)
+ 
  -[Comments](#Comment)
+  - [Create Comment](https://www.github.com/octokatherine)
+  - [Get all Comments](https://www.github.com/octokatherine)
+  - [Update Comment](https://www.github.com/octokatherine)
 
 
 # API Authentication
