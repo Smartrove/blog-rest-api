@@ -60,12 +60,12 @@ __Server:__ Node, Express, MongoDB, Mongoose, JWT
     - [Get all Comments](https://www.github.com/octokatherine)
     - [Update Comment](https://www.github.com/octokatherine)
 
- - [Categoriess](#Category)
-    - [Create Category](https://www.github.com/octokatherine)
-    - [Get all Categoriess](https://www.github.com/octokatherine)
-    - [Get a single category](https://www.github.com/octokatherine)
-    - [Update Category](https://www.github.com/octokatherine)
-    - [Delete Category](https://www.github.com/octokatherine)
+ - [Categories](#Category)
+    - [Create Category]
+    - [Get all Categoriess]
+    - [Get a single category]
+    - [Update Category]
+    - [Delete Category]
 
 
 # API Authentication
