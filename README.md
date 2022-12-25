@@ -28,8 +28,8 @@ __Server:__ Node, Express, MongoDB, Mongoose, JWT
 # ENDPOINTS
 
 - [API AUTHENTICATION](#API-Authentication)
-  - [Register a new API Client](##User-Login)
-  - [Login](https://www.github.com/octokatherine)
+  - [Register a new API Client](##Register a new API Client)
+  - [Login](##Login)
 
 - [Users](https://www.github.com/octokatherine)
   - [Get my profile](https://www.github.com/octokatherine)
@@ -61,7 +61,7 @@ POST /api/blog/v1/user/register
 The request body needs to be a JSON Format
 
 # API Reference
-## User Login
+## Login
 
 ```http
 POST /api/blog/v1/user/login
