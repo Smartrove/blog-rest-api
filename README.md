@@ -373,7 +373,7 @@ GET /api/blog/v1/category/:id
 |Parameter |Type |Description |Required|
 |:---------|:----|:-----------|:-------|
 | `authentication`   |`string`| Your Token | Yes|
-| `id`   |`string`| Post id | Yes|
+| `id`   |`string`| category id | Yes|
 
 
 ## Update category
@@ -384,7 +384,7 @@ PUT /api/blog/v1/category/:id
 |Parameter |Type |Description |Required|
 |:---------|:----|:-----------|:-------|
 | `authentication`   |`string`| Your Token | Yes|
-| `id`   |`string`| Post id | Yes|
+| `id`   |`string`| category id | Yes|
 
 
 ## Delete category
@@ -395,7 +395,7 @@ DELETE /api/blog/v1/category/:id
 |Parameter |Type |Description |Required|
 |:---------|:----|:-----------|:-------|
 | `authentication`   |`string`| Your Token | Yes|
-| `id`   |`string`| Post id | Yes|
+| `id`   |`string`| category id | Yes|
 
 
 
