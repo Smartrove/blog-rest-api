@@ -47,6 +47,7 @@ __Server:__ Node, Express, MongoDB, Mongoose, JWT
   - [Upload a profile photo](https://www.github.com/octokatherine)
   
  -[Posts](#Post)
+ -[Comments](#Comment)
 
 
 # API Authentication
