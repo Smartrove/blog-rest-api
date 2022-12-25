@@ -45,6 +45,8 @@ __Server:__ Node, Express, MongoDB, Mongoose, JWT
   - [Update a user password](https://www.github.com/octokatherine)
   - [Delete your account](https://www.github.com/octokatherine)
   - [Upload a profile photo](https://www.github.com/octokatherine)
+  
+ -[Posts](#Post)
 
 
 # API Authentication
@@ -210,7 +212,7 @@ POST /api/blog/v1/user/profile-upload
 |`password` | `string` | Your password | Yes|
 
 
-# API Reference
+# Post
 ## Create Post
 
 ```http
@@ -276,6 +278,16 @@ GET /api/blog/v1/post/update/:id
 | `authentication`   |`string`| Your Token | Yes|
 | `id`   |`string`| User id | Yes|
 
+
+## Delete a Post
+
+```http
+GET /api/blog/v1/post/update/:id
+```
+|Parameter |Type |Description |Required|
+|:---------|:----|:-----------|:-------|
+| `authentication`   |`string`| Your Token | Yes|
+| `id`   |`string`| Post id | Yes|
 
 
 
