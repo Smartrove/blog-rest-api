@@ -28,7 +28,7 @@ __Server:__ Node, Express, MongoDB, Mongoose, JWT
 # ENDPOINTS
 
 - [API AUTHENTICATION](#API-Authentication)
-  - [Register a new API Client](##User Login)
+  - [Register a new API Client](##User-Login)
   - [Login](https://www.github.com/octokatherine)
 
 - [Users](https://www.github.com/octokatherine)
