@@ -60,6 +60,13 @@ __Server:__ Node, Express, MongoDB, Mongoose, JWT
     - [Get all Comments](https://www.github.com/octokatherine)
     - [Update Comment](https://www.github.com/octokatherine)
 
+ - [Categoriess](#Category)
+    - [Create Category](https://www.github.com/octokatherine)
+    - [Get all Categoriess](https://www.github.com/octokatherine)
+    - [Get a single category](https://www.github.com/octokatherine)
+    - [Update Category](https://www.github.com/octokatherine)
+    - [Delete Category](https://www.github.com/octokatherine)
+
 
 # API Authentication
 Some endpoints would require authentication to perform some actions. Example of that is when you need to create/update/delete post, you will need your access token to do that.
@@ -328,6 +335,62 @@ PUT /api/blog/v1/comment/:id
 
 ```http
 DELETE /api/blog/v1/comment/:id
+```
+|Parameter |Type |Description |Required|
+|:---------|:----|:-----------|:-------|
+| `authentication`   |`string`| Your Token | Yes|
+| `id`   |`string`| Post id | Yes|
+
+# Category
+## Create Category
+
+```http
+POST /api/blog/v1/category/
+```
+|Parameter |Type |Description |Required|
+|:---------|:----|:-----------|:-------|
+| `authentication`   |`string`| Your Token | Yes|
+| `title`   |`string`| Your email | Yes|
+|`description` | `string` | Your password | Yes|
+
+## View All Categories
+
+```http
+GET /api/blog/v1/category/
+```
+|Parameter |Type |Description |Required|
+|:---------|:----|:-----------|:-------|
+| `authentication`   |`string`| Your Token | Yes|
+| `title`   |`string`| Your email | no|
+|`description` | `string` | Your password | no|
+
+
+## View a single category
+
+```http
+GET /api/blog/v1/category/:id
+```
+|Parameter |Type |Description |Required|
+|:---------|:----|:-----------|:-------|
+| `authentication`   |`string`| Your Token | Yes|
+| `id`   |`string`| Post id | Yes|
+
+
+## Update category
+
+```http
+PUT /api/blog/v1/category/:id
+```
+|Parameter |Type |Description |Required|
+|:---------|:----|:-----------|:-------|
+| `authentication`   |`string`| Your Token | Yes|
+| `id`   |`string`| Post id | Yes|
+
+
+## Delete category
+
+```http
+DELETE /api/blog/v1/category/:id
 ```
 |Parameter |Type |Description |Required|
 |:---------|:----|:-----------|:-------|
