@@ -29,9 +29,9 @@ __Server:__ Node, Express, MongoDB, Mongoose, JWT
 
 - [API AUTHENTICATION](#API-Authentication)
   - [Register a new API Client](##Register-a-new-API-Client)
-  - [Login](#API-Reference)
+  - [Login](#Users)
 
-- [Users](https://www.github.com/octokatherine)
+- [Users](#Users)
   - [Get my profile](https://www.github.com/octokatherine)
   - [Get all users](https://www.github.com/octokatherine)
   - [View a user profile count](https://www.github.com/octokatherine)
@@ -60,7 +60,7 @@ POST /api/blog/v1/user/register
 
 The request body needs to be a JSON Format
 
-# API Reference
+# Users
 ## Login
 
 ```http
