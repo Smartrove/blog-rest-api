@@ -32,40 +32,40 @@ __Server:__ Node, Express, MongoDB, Mongoose, JWT
   - [Login](#Users)
 
 - [Users](#Users)
-  - [Get my profile](https://www.github.com/octokatherine)
-  - [Get all users](https://www.github.com/octokatherine)
-  - [View a user profile count](https://www.github.com/octokatherine)
-  - [Following a user](https://www.github.com/octokatherine)
-  - [#Unfollowing a user](https://www.github.com/octokatherine)
-  - [Update a user password](https://www.github.com/octokatherine)
-  - [Update your profile](https://www.github.com/octokatherine)
-  - [Block another user](https://www.github.com/octokatherine)
-  - [Unblock another user](https://www.github.com/octokatherine)
-  - [Admin blocking a user](https://www.github.com/octokatherine)
-  - [Update a user password](https://www.github.com/octokatherine)
-  - [Delete your account](https://www.github.com/octokatherine)
-  - [Upload a profile photo](https://www.github.com/octokatherine)
+  - [Get my profile](##Register-a-new-API-Client)
+  - [Get all users](##Register-a-new-API-Client)
+  - [View a user profile count](##Register-a-new-API-Client)
+  - [Following a user](##Register-a-new-API-Client)
+  - [#Unfollowing a user](##Register-a-new-API-Client)
+  - [Update a user password](##Register-a-new-API-Client)
+  - [Update your profile](##Register-a-new-API-Client)
+  - [Block another user](##Register-a-new-API-Client)
+  - [Unblock another user](##Register-a-new-API-Client)
+  - [Admin blocking a user](##Register-a-new-API-Client)
+  - [Update a user password](##Register-a-new-API-Client)
+  - [Delete your account](##Register-a-new-API-Client)
+  - [Upload a profile photo](##Register-a-new-API-Client)
   
  - [Posts](#Post)
-    - [Create Post](https://www.github.com/octokatherine)
-    - [Get all Posts](https://www.github.com/octokatherine)
-    - [Like Post](https://www.github.com/octokatherine)
-    - [Dislike Post](https://www.github.com/octokatherine)
-    - [Get viewers of post](https://www.github.com/octokatherine)
-    - [Update Post](https://www.github.com/octokatherine)
-    - [Delete Post](https://www.github.com/octokatherine)
+    - [Create Post](##Register-a-new-API-Client)
+    - [Get all Posts](##Register-a-new-API-Client)
+    - [Like Post](##Register-a-new-API-Client)
+    - [Dislike Post](##Register-a-new-API-Client)
+    - [Get viewers of post](##Register-a-new-API-Client)
+    - [Update Post](##Register-a-new-API-Client)
+    - [Delete Post](##Register-a-new-API-Client)
  
  - [Comments](#Comment)
-    - [Create Comment](https://www.github.com/octokatherine)
-    - [Get all Comments](https://www.github.com/octokatherine)
-    - [Update Comment](https://www.github.com/octokatherine)
+    - [Create Comment](##Register-a-new-API-Client)
+    - [Get all Comments](##Register-a-new-API-Client)
+    - [Update Comment](##Register-a-new-API-Client)
 
  - [Categories](#Category)
-    - [Create Category]
-    - [Get all Categoriess]
-    - [Get a single category]
-    - [Update Category]
-    - [Delete Category]
+    - [Create Category](##Register-a-new-API-Client)
+    - [Get all Categoriess](##Register-a-new-API-Client)
+    - [Get a single category](##Register-a-new-API-Client)
+    - [Update Category](##Register-a-new-API-Client)
+    - [Delete Category](##Register-a-new-API-Client)
 
 
 # API Authentication
